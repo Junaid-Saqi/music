@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Name - Official Website</title>
+    <meta name="description" content="Official website of Artist Name. New single out now.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <a href="#hero" class="logo" id="siteLogo">ARTIST NAME</a>
+            <ul class="nav-links">
+                <li><a href="#music">Music</a></li>
+                <li><a href="#tour">Tour</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-in">
+            <h1 class="artist-name" id="siteArtistName">Artist Name</h1>
+            <p class="tagline" id="siteTagline">New single out now</p>
+            <a href="#music" class="cta-button">Listen Now</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="music" class="section fade-in">
+            <div class="container">
+                <h2 class="section-title">Latest Releases</h2>
+                <div class="music-grid" id="siteMusicGrid">
+                    <!-- Music items will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <section id="tour" class="section fade-in">
+            <div class="container">
+                <h2 class="section-title">Tour Dates</h2>
+                <div class="tour-list glass-card" id="siteTourList">
+                    <!-- Tour dates will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section fade-in">
+            <div class="container">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-card glass-card">
+                    <p>For booking and inquiries:</p>
+                    <a href="mailto:booking@artistname.com" class="email-link" id="siteEmail">booking@artistname.com</a>
+                    
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram" class="social-icon">Instagram</a>
+                        <a href="#" aria-label="Twitter" class="social-icon">Twitter</a>
+                        <a href="#" aria-label="Spotify" class="social-icon">Spotify</a>
+                        <a href="#" aria-label="YouTube" class="social-icon">YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Artist Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

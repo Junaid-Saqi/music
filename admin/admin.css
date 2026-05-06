@@ -1,0 +1,213 @@
+:root {
+    --bg-color: #0d0d0d;
+    --text-color: #ffffff;
+    --accent-color: #a3a3a3;
+    --primary-color: #ffffff;
+    --primary-text: #000000;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(0, 0, 0, 0.3);
+    --font-main: 'Outfit', sans-serif;
+    --success-color: #4caf50;
+    --error-color: #f44336;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    padding-bottom: 4rem;
+}
+
+.admin-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.admin-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.view-site-btn {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.view-site-btn:hover {
+    background: var(--glass-bg);
+    color: var(--text-color);
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.admin-section {
+    margin-bottom: 2rem;
+}
+
+.admin-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    margin-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--input-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Tour Items */
+.tour-editor-item {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.remove-tour-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--error-color);
+    cursor: pointer;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.remove-tour-btn:hover {
+    opacity: 1;
+}
+
+.tour-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--primary-text);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-main);
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: #e0e0e0;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.form-actions {
+    margin-top: 3rem;
+}
+
+/* Notification */
+.notification {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    display: none;
+    text-align: center;
+}
+
+.notification.success {
+    display: block;
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--success-color);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.notification.error {
+    display: block;
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--error-color);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}

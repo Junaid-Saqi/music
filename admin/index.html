@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS - Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Artist CMS Dashboard</h1>
+            <a href="/" target="_blank" class="view-site-btn">View Live Site</a>
+        </header>
+
+        <main class="admin-content">
+            <div id="notification" class="notification"></div>
+
+            <form id="cmsForm">
+                <section class="admin-section glass-card">
+                    <h2>Hero Section</h2>
+                    <div class="form-group">
+                        <label for="artistName">Artist Name</label>
+                        <input type="text" id="artistName" name="artistName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tagline">Tagline</label>
+                        <input type="text" id="tagline" name="tagline" required>
+                    </div>
+                </section>
+
+                <section class="admin-section glass-card">
+                    <h2>Contact Info</h2>
+                    <div class="form-group">
+                        <label for="contactEmail">Booking Email</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required>
+                    </div>
+                </section>
+
+                <section class="admin-section glass-card">
+                    <div class="section-header">
+                        <h2>Music Releases</h2>
+                        <button type="button" id="addMusicBtn" class="btn-secondary">+ Add Music</button>
+                    </div>
+                    <div id="musicList">
+                        <!-- Music items will be injected here -->
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--accent-color); margin-top: 1rem;">Paste the "Embed track" or "Embed album" code directly from Spotify.</p>
+                </section>
+
+                <section class="admin-section glass-card">
+                    <div class="section-header">
+                        <h2>Tour Dates</h2>
+                        <button type="button" id="addTourBtn" class="btn-secondary">+ Add Tour Date</button>
+                    </div>
+                    <div id="tourList">
+                        <!-- Tour items will be injected here -->
+                    </div>
+                </section>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="saveBtn">Save Changes</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
