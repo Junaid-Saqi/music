@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveBtn.disabled = true;
 
         const tourItems = [];
-        document.querySelectorAll('.tour-editor-item').forEach(item => {
+        document.querySelectorAll('.tour-editor-item:not(.music-editor-item)').forEach(item => {
             tourItems.push({
                 date: item.querySelector('.tour-date').value,
                 venue: item.querySelector('.tour-venue').value,
