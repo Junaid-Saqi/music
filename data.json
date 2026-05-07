@@ -1,29 +1,10 @@
 {
-  "artistName": "junaidkjhljjhbljhjl",
+  "artistName": "junaid mirza",
   "tagline": "tum",
   "contactEmail": "booking@artistname.com",
   "musicReleases": [
-    "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/track/11dFghVXANMlKmJXsNCbNl?utm_source=generator&theme=0\" width=\"100%\" height=\"152\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
-    "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3?utm_source=generator&theme=0\" width=\"100%\" height=\"152\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+    "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/37i9dQZEVXbNy9tB5elXf1?utm_source=generator&theme=0\" width=\"100%\" height=\"152\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
+    "<iframe style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/playlist/37i9dQZEVXbNy9tB5elXf1?utm_source=generator&theme=0\" width=\"100%\" height=\"152\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
   ],
-  "tourDates": [
-    {
-      "date": "Nov 15",
-      "venue": "The Echo Lounge",
-      "location": "Los Angeles, CA",
-      "link": "#"
-    },
-    {
-      "date": "Nov 18",
-      "venue": "Fillmore",
-      "location": "San Francisco, CA",
-      "link": "#"
-    },
-    {
-      "date": "Nov 22",
-      "venue": "Brooklyn Steel",
-      "location": "New York, NY",
-      "link": "#"
-    }
-  ]
+  "tourDates": []
 }
