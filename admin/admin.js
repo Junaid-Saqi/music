@@ -35,13 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
     addMusicBtn.addEventListener('click', () => addMusicItem());
 
     function addMusicItem(code = '') {
+        const displayValue = extractSpotifyUrl(code);
         const div = document.createElement('div');
         div.className = 'tour-editor-item music-editor-item';
         div.innerHTML = `
             <button type="button" class="remove-tour-btn">Remove</button>
             <div class="form-group" style="margin-bottom:0">
-                <label>Spotify Embed Code</label>
-                <input type="text" class="music-code" value='${code.replace(/'/g, "&apos;")}' placeholder='<iframe src="https://open.spotify.com/embed/..." ...></iframe>' required>
+                <label>Spotify Link</label>
+                <input type="text" class="music-code" value='${displayValue}' placeholder='https://open.spotify.com/track/...' required>
+                <small style="color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 0.3rem; display: block;">Paste the URL from Spotify (Track, Album, or Playlist)</small>
             </div>
         `;
 
@@ -50,6 +52,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         musicList.appendChild(div);
+    }
+
+    function extractSpotifyUrl(embedCode) {
+        if (!embedCode.includes('<iframe')) return embedCode;
+        const regex = /src="https:\/\/open\.spotify\.com\/embed\/(track|album|playlist|artist)\/([a-zA-Z0-9]+)/;
+        const match = embedCode.match(regex);
+        if (match) {
+            return `https://open.spotify.com/${match[1]}/${match[2]}`;
+        }
+        return embedCode;
+    }
+
+    function convertToSpotifyEmbed(input) {
+        if (input.includes('<iframe')) return input;
+        
+        const spotifyUrl = input.trim();
+        const regex = /spotify\.com\/(track|album|playlist|artist)\/([a-zA-Z0-9]+)/;
+        const match = spotifyUrl.match(regex);
+        
+        if (match) {
+            const type = match[1];
+            const id = match[2];
+            return `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/${type}/${id}?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+        }
+        return input;
     }
 
     function addTourItem(data = { date: '', venue: '', location: '', link: '' }) {
@@ -104,7 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const musicItems = [];
         document.querySelectorAll('.music-editor-item').forEach(item => {
-            musicItems.push(item.querySelector('.music-code').value);
+            const val = item.querySelector('.music-code').value;
+            musicItems.push(convertToSpotifyEmbed(val));
         });
 
         const newData = {
