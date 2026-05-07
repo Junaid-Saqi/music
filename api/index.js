@@ -22,9 +22,14 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-// For local dev, serve static files. Vercel ignores this automatically.
-app.use(express.static(path.join(__dirname, '..'))); 
+// Serve static files
+const rootDir = path.join(__dirname, '..');
+app.use(express.static(rootDir));
 
+// Root route - serve index.html explicitly if static doesn't catch it
+app.get('/', (req, res) => {
+    res.sendFile(path.join(rootDir, 'index.html'));
+});
 const originalDataPath = path.join(__dirname, '..', 'data.json');
 const tmpDataPath = '/tmp/data.json'; // Vercel allows writing to /tmp
 
