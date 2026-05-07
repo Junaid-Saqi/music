@@ -2,6 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const basicAuth = require('express-basic-auth');
+const { kv } = require('@vercel/kv');
+require('dotenv').config();
 
 const app = express();
 
@@ -41,30 +43,61 @@ function getActiveDataPath() {
 }
 
 // GET data
-app.get('/api/data', (req, res) => {
-    const dataFilePath = getActiveDataPath();
-    fs.readFile(dataFilePath, 'utf8', (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: 'Failed to read data' });
+app.get('/api/data', async (req, res) => {
+    try {
+        // Try to get data from Cloud Storage (Vercel KV)
+        if (process.env.KV_REST_API_URL) {
+            const cloudData = await kv.get('artist_data');
+            if (cloudData) {
+                return res.json(cloudData);
+            }
         }
-        res.json(JSON.parse(data));
-    });
+
+        // Fallback to local file if cloud is not configured or empty
+        const dataFilePath = getActiveDataPath();
+        fs.readFile(dataFilePath, 'utf8', (err, data) => {
+            if (err) {
+                return res.status(500).json({ error: 'Failed to read data' });
+            }
+            res.json(JSON.parse(data));
+        });
+    } catch (error) {
+        console.error('Database error:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
 });
 
 // POST update data
-app.post('/api/data', (req, res) => {
+app.post('/api/data', async (req, res) => {
     const newData = req.body;
     
-    // Check if we are running in Vercel (where the root filesystem is read-only)
-    const isVercel = process.env.VERCEL === '1';
-    const targetPath = isVercel ? tmpDataPath : originalDataPath;
-
-    fs.writeFile(targetPath, JSON.stringify(newData, null, 2), 'utf8', (err) => {
-        if (err) {
-            return res.status(500).json({ error: 'Failed to save data' });
+    try {
+        // 1. Save to Cloud Storage (Vercel KV) if configured
+        if (process.env.KV_REST_API_URL) {
+            await kv.set('artist_data', newData);
         }
-        res.json({ success: true, message: 'Data updated successfully' });
-    });
+
+        // 2. Save to local file (for local dev or Vercel /tmp fallback)
+        const isVercel = process.env.VERCEL === '1';
+        const targetPath = isVercel ? tmpDataPath : originalDataPath;
+
+        fs.writeFile(targetPath, JSON.stringify(newData, null, 2), 'utf8', (err) => {
+            if (err) {
+                // If cloud saved but file failed, we still count it as a partial success
+                if (!process.env.KV_REST_API_URL) {
+                    return res.status(500).json({ error: 'Failed to save data' });
+                }
+            }
+            res.json({ 
+                success: true, 
+                message: 'Data updated successfully',
+                storage: process.env.KV_REST_API_URL ? 'cloud' : 'local'
+            });
+        });
+    } catch (error) {
+        console.error('Save error:', error);
+        res.status(500).json({ error: 'Failed to save to cloud storage' });
+    }
 });
 
 module.exports = app;
